@@ -1,11 +1,26 @@
 import { createGlobalStyle } from "styled-components";
+import NotoSansRegular from "@/assets/fonts/NotoSansKR-Regular.ttf";
 
 const GlobalStyle = createGlobalStyle`
+  @font-face {
+    font-family: 'NotoSansRegular';
+    src: url(${NotoSansRegular}) format('truetype');
+  }
+
   * {
     margin: 0;
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    font-family: 'NotoSansRegular';
+  }
+
+  html {
+    font-family: 'NotoSansRegular';
+  }
+
+  body {
+    font-family: 'NotoSansRegular';
   }
 
   h1 {
