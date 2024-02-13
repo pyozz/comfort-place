@@ -1,10 +1,10 @@
 import React from "react";
 import * as S from "./style";
 
-function ProductItem({ image, company, name, price, shipping }) {
+function ProductItem({ id, image, company, name, price, shipping }) {
   return (
     <li style={{ marginBottom: "20px" }}>
-      <S.ProductCard>
+      <S.ProductCard to={`/products/${id}`}>
         <div className="card-image">
           <img src={image} alt={name} />
         </div>
