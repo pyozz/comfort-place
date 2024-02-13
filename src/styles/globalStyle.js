@@ -13,13 +13,16 @@ const GlobalStyle = createGlobalStyle`
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-family: 'NotoSansRegular';
+    color: #121212;
   }
 
   html {
+    color: #121212;
     font-family: 'NotoSansRegular';
   }
 
   body {
+    color: #121212;
     font-family: 'NotoSansRegular';
   }
 
