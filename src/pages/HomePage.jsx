@@ -1,12 +1,7 @@
 import React from "react";
-import Navbar from "@/common/Navbar";
 
 function HomePage() {
-  return (
-    <>
-      <Navbar />
-    </>
-  );
+  return <h2>HomePage</h2>;
 }
 
 export default HomePage;
