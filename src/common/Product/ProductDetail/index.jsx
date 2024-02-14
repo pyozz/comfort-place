@@ -1,25 +1,44 @@
-import React from "react";
-import { useLocation } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+
+import { db } from "@/config/firebase";
+import { collection, getDocs } from "firebase/firestore";
 
 import * as S from "./style";
 
 function ProductDetail() {
-  const location = useLocation();
-  const { product } = location.state;
+  const [singleProduct, setSingleProduct] = useState({});
+  const productCollectionRef = collection(db, "product");
 
-  console.log(product);
+  const params = useParams();
+
+  useEffect(() => {
+    const getProduct = async () => {
+      try {
+        const response = await getDocs(productCollectionRef);
+        const data = response.docs.map((doc) => ({
+          ...doc.data(),
+          id: doc.id,
+        }));
+
+        const target = data.find((item) => item.id === params.productId);
+
+        setSingleProduct(target);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    getProduct();
+  }, []);
 
   return (
     <S.SingleProduct className="single-product">
-      <div className="product-image">
-        <img src={product.image} alt={product.name} />
-      </div>
-
       <div className="product-info">
-        <span className="company">{product.company}</span>
-        <h2 className="name">{product.name}</h2>
-        <p className="description">{product.description}</p>
-        <strong className="price">{product.price.toLocaleString()} 원</strong>
+        <span className="company">{singleProduct.company}</span>
+        <h2 className="name">{singleProduct.name}</h2>
+        <p className="description">{singleProduct.description}</p>
+        <strong className="price">{singleProduct.price} 원</strong>
       </div>
     </S.SingleProduct>
   );
