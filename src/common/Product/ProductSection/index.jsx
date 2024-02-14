@@ -8,7 +8,9 @@ function ProductSection({ products }) {
     <Section>
       <ul>
         {products.map((product) => {
-          return <ProductItem key={product.id} {...product} />;
+          return (
+            <ProductItem key={product.id} products={products} {...product} />
+          );
         })}
       </ul>
     </Section>

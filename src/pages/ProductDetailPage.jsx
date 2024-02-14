@@ -1,7 +1,8 @@
 import React from "react";
+import ProductDetail from "../common/Product/ProductDetail";
 
 function ProductDetailPage() {
-  return <div>ProductDetailPage</div>;
+  return <ProductDetail />;
 }
 
 export default ProductDetailPage;

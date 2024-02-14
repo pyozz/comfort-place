@@ -1,10 +1,13 @@
 import React from "react";
 import * as S from "./style";
 
-function ProductItem({ id, image, company, name, price, shipping }) {
+function ProductItem({ products, id, image, company, name, price, shipping }) {
   return (
     <li style={{ marginBottom: "20px" }}>
-      <S.ProductCard to={`/products/${id}`}>
+      <S.ProductCard
+        to={`/products/${id}`}
+        state={{ product: products.find((data) => data.id === id) }}
+      >
         <div className="card-image">
           <img src={image} alt={name} />
         </div>
