@@ -16,6 +16,7 @@ export const SingleProduct = styled.div`
 
   .product-info {
     padding: 0 16px;
+    margin-top: 76px;
 
     .company {
       display: inline-block;

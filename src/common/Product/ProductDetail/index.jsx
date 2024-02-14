@@ -4,6 +4,8 @@ import { useParams } from "react-router-dom";
 import { db } from "@/config/firebase";
 import { collection, getDocs } from "firebase/firestore";
 
+import ProductImages from "../ProductImages";
+
 import * as S from "./style";
 
 function ProductDetail() {
@@ -34,6 +36,8 @@ function ProductDetail() {
 
   return (
     <S.SingleProduct className="single-product">
+      {singleProduct.images && <ProductImages images={singleProduct.images} />}
+
       <div className="product-info">
         <span className="company">{singleProduct.company}</span>
         <h2 className="name">{singleProduct.name}</h2>
