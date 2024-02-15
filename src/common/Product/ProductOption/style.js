@@ -4,6 +4,7 @@ export const Wrapper = styled.div`
   .colors {
     display: flex;
     align-items: center;
+    margin-bottom: 12px;
 
     span {
       margin-right: 8px;
@@ -26,6 +27,27 @@ export const Wrapper = styled.div`
       svg {
         fill: #fff;
       }
+    }
+  }
+
+  .amount-buttons {
+    display: flex;
+    align-items: center;
+
+    button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 24px;
+      height: 24px;
+    }
+
+    h2 {
+      padding-bottom: 4px;
+    }
+
+    *:not(:last-child) {
+      margin-right: 8px;
     }
   }
 `;
