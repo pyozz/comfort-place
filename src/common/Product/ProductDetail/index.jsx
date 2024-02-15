@@ -36,17 +36,31 @@ function ProductDetail() {
   }, []);
 
   return (
-    <S.SingleProduct className="single-product">
+    <S.SingleProduct>
       {singleProduct.images && <ProductImages images={singleProduct.images} />}
 
-      <div className="product-info">
-        <span className="company">{singleProduct.company}</span>
-        <h2 className="name">{singleProduct.name}</h2>
-        <p className="description">{singleProduct.description}</p>
-        <strong className="price">{singleProduct.price} 원</strong>
-      </div>
+      <div className="product-content">
+        <div className="product-info">
+          <span className="company">{singleProduct.company}</span>
+          <h2 className="name">{singleProduct.name}</h2>
+          <p className="description">{singleProduct.description}</p>
+          <strong className="price">
+            {singleProduct.price.toLocaleString()} 원
+          </strong>
+        </div>
 
-      {singleProduct.colors && <ProductOption colors={singleProduct.colors} />}
+        <hr
+          style={{
+            margin: "18px 0",
+            backgroundColor: "d9d9d9",
+            opacity: 0.3,
+          }}
+        />
+
+        {singleProduct.colors && (
+          <ProductOption colors={singleProduct.colors} />
+        )}
+      </div>
     </S.SingleProduct>
   );
 }

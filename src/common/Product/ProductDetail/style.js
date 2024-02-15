@@ -14,8 +14,11 @@ export const SingleProduct = styled.div`
     }
   }
 
-  .product-info {
+  .product-content {
     padding: 0 16px;
+  }
+
+  .product-info {
     margin-top: 76px;
 
     .company {
