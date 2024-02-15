@@ -5,6 +5,7 @@ import { db } from "@/config/firebase";
 import { collection, getDocs } from "firebase/firestore";
 
 import ProductImages from "../ProductImages";
+import ProductOption from "../ProductOption";
 
 import * as S from "./style";
 
@@ -44,6 +45,8 @@ function ProductDetail() {
         <p className="description">{singleProduct.description}</p>
         <strong className="price">{singleProduct.price} 원</strong>
       </div>
+
+      {singleProduct.colors && <ProductOption colors={singleProduct.colors} />}
     </S.SingleProduct>
   );
 }
