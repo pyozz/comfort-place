@@ -45,7 +45,7 @@ function ProductDetail() {
           <h2 className="name">{singleProduct.name}</h2>
           <p className="description">{singleProduct.description}</p>
           <strong className="price">
-            {singleProduct.price.toLocaleString()} 원
+            {singleProduct.price?.toLocaleString()} 원
           </strong>
         </div>
 
