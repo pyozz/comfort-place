@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
 export const SingleProduct = styled.div`
+  padding-bottom: 24px;
+
   .product-image {
     width: 100%;
     height: 220px;
