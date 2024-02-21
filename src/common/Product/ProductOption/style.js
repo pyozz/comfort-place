@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
@@ -33,6 +34,7 @@ export const Wrapper = styled.div`
   .amount-buttons {
     display: flex;
     align-items: center;
+    margin-bottom: 16px;
 
     button {
       display: flex;
@@ -50,4 +52,12 @@ export const Wrapper = styled.div`
       margin-right: 8px;
     }
   }
+`;
+
+export const CartButton = styled(Link)`
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  color: #fff;
+  background-color: #0081ff;
 `;

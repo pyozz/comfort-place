@@ -50,6 +50,8 @@ function ProductOption({ colors }) {
           <FaPlus />
         </button>
       </div>
+
+      <S.CartButton to="/cart">장바구니에 추가</S.CartButton>
     </S.Wrapper>
   );
 }
