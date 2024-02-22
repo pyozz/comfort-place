@@ -1,8 +1,11 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { filterActions } from "@/store/slices/filterSlice.js";
+import { FaCheck } from "react-icons/fa";
 
+import { filterActions } from "@/store/slices/filterSlice.js";
 import { removeDuplicates } from "../../utils/helpers";
+
+import * as S from "./style";
 
 function Filter() {
   const { all_products, filters } = useSelector((state) => state.filter);
@@ -14,7 +17,9 @@ function Filter() {
 
   const handleChange = (e) => {
     let { name, value } = e.target;
+
     if (name === "category") value = e.target.textContent;
+    if (name === "color") value = e.target.dataset.color;
 
     dispatch(filterActions.updateFilters({ name, value }));
   };
@@ -24,7 +29,7 @@ function Filter() {
   const colors = removeDuplicates(all_products, "colors");
 
   return (
-    <div>
+    <S.Filters>
       <form onSubmit={(e) => e.preventDefault()}>
         <input
           type="text"
@@ -64,8 +69,30 @@ function Filter() {
             })}
           </select>
         </div>
+
+        <div className="colors">
+          {colors.map((color, i) => {
+            return (
+              <button
+                key={i}
+                type="button"
+                name="color"
+                style={{
+                  backgroundColor: color,
+                }}
+                data-color={color}
+                onClick={handleChange}
+              >
+                {i === 0 && "all"}
+                {i !== 0 && color === filters.color ? (
+                  <FaCheck size={12} />
+                ) : null}
+              </button>
+            );
+          })}
+        </div>
       </form>
-    </div>
+    </S.Filters>
   );
 }
 
