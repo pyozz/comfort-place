@@ -28,6 +28,26 @@ export const filterSlice = createSlice({
       state.filters.max_price = maxPrice;
       state.filters.price = maxPrice;
     },
+
+    updateFilters(state, action) {
+      const { name, value } = action.payload;
+      state.filters[name] = value;
+    },
+
+    filterProducts(state) {
+      const { all_products } = state;
+      const { text } = state.filters;
+
+      let tempProducts = [...all_products];
+
+      if (text) {
+        tempProducts = tempProducts.filter((product) => {
+          return product.name.toLowerCase().includes(text);
+        });
+      }
+
+      state.filtered_products = tempProducts;
+    },
   },
 });
 
