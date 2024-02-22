@@ -2,8 +2,10 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { filterActions } from "@/store/slices/filterSlice.js";
 
+import { removeDuplicates } from "../../utils/helpers";
+
 function Filter() {
-  const { filters } = useSelector((state) => state.filter);
+  const { all_products, filters } = useSelector((state) => state.filter);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -11,9 +13,15 @@ function Filter() {
   }, [filters]);
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    let { name, value } = e.target;
+    if (name === "category") value = e.target.textContent;
+
     dispatch(filterActions.updateFilters({ name, value }));
   };
+
+  const categories = removeDuplicates(all_products, "category");
+  const companies = removeDuplicates(all_products, "company");
+  const colors = removeDuplicates(all_products, "colors");
 
   return (
     <div>
@@ -25,6 +33,21 @@ function Filter() {
           placeholder="search"
           onChange={handleChange}
         />
+
+        <div>
+          {categories.map((category, i) => {
+            return (
+              <button
+                key={i}
+                type="button"
+                name="category"
+                onClick={handleChange}
+              >
+                {category}
+              </button>
+            );
+          })}
+        </div>
       </form>
     </div>
   );

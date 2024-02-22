@@ -36,13 +36,19 @@ export const filterSlice = createSlice({
 
     filterProducts(state) {
       const { all_products } = state;
-      const { text } = state.filters;
+      const { text, category } = state.filters;
 
       let tempProducts = [...all_products];
 
       if (text) {
         tempProducts = tempProducts.filter((product) => {
           return product.name.toLowerCase().includes(text);
+        });
+      }
+
+      if (category !== "all") {
+        tempProducts = tempProducts.filter((product) => {
+          return product.category === category;
         });
       }
 
