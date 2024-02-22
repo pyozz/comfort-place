@@ -1,10 +1,15 @@
 import React, { useState } from "react";
 import { FaCheck, FaPlus, FaMinus } from "react-icons/fa";
+import { useDispatch } from "react-redux";
+
+import { cartActions } from "../../../store/slices/cartSlice";
+
 import * as S from "./style";
 
-function ProductOption({ colors }) {
+function ProductOption({ singleProduct, colors }) {
   const [mainColor, setMainColor] = useState(colors[0]);
   const [amount, setAmount] = useState(1);
+  const dispatch = useDispatch();
 
   const decrease = () => {
     setAmount((prevAmount) => {
@@ -17,6 +22,16 @@ function ProductOption({ colors }) {
 
   const increase = () => {
     setAmount((prevAmount) => prevAmount + 1);
+  };
+
+  const handleAddItemToCart = () => {
+    dispatch(
+      cartActions.addItemToCart({
+        product: singleProduct,
+        mainColor,
+        amount,
+      })
+    );
   };
 
   return (
@@ -51,7 +66,9 @@ function ProductOption({ colors }) {
         </button>
       </div>
 
-      <S.CartButton to="/cart">장바구니에 추가</S.CartButton>
+      <S.CartButton to="/cart" onClick={handleAddItemToCart}>
+        장바구니에 추가
+      </S.CartButton>
     </S.Wrapper>
   );
 }

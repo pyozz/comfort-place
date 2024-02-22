@@ -58,7 +58,10 @@ function ProductDetail() {
         />
 
         {singleProduct.colors && (
-          <ProductOption colors={singleProduct.colors} />
+          <ProductOption
+            singleProduct={singleProduct}
+            colors={singleProduct.colors}
+          />
         )}
       </div>
     </S.SingleProduct>
