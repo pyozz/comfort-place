@@ -1,6 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { FaCheck } from "react-icons/fa";
+import { IoFilter } from "react-icons/io5";
 
 import { filterActions } from "@/store/slices/filterSlice.js";
 import { removeDuplicates } from "../../utils/helpers";
@@ -10,6 +11,7 @@ import * as S from "./style";
 function Filter() {
   const { all_products, filters } = useSelector((state) => state.filter);
   const dispatch = useDispatch();
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
 
   useEffect(() => {
     dispatch(filterActions.filterProducts());
@@ -35,8 +37,8 @@ function Filter() {
   const colors = removeDuplicates(all_products, "colors");
 
   return (
-    <S.Filters>
-      <form onSubmit={(e) => e.preventDefault()}>
+    <div>
+      <S.SearchControl>
         <input
           type="text"
           name="text"
@@ -44,89 +46,113 @@ function Filter() {
           placeholder="search"
           onChange={handleChange}
         />
+        <button type="button" onClick={() => setIsFilterOpen(!isFilterOpen)}>
+          <IoFilter />
+        </button>
+      </S.SearchControl>
 
-        <div>
-          {categories.map((category, i) => {
-            return (
-              <button
-                key={i}
-                type="button"
-                name="category"
-                onClick={handleChange}
-              >
-                {category}
-              </button>
-            );
-          })}
-        </div>
+      {isFilterOpen && (
+        <S.MoreOptions>
+          <article className="categories">
+            <h2>카테고리</h2>
 
-        <div>
-          <select
-            name="company"
-            value={filters.company}
-            onChange={handleChange}
-          >
-            {companies.map((company, i) => {
-              return (
-                <option key={i} value={company}>
-                  {company}
-                </option>
-              );
-            })}
-          </select>
-        </div>
+            <div className="button-container">
+              {categories.map((category, i) => {
+                return (
+                  <button
+                    key={i}
+                    className={
+                      category.toLowerCase() === filters.category
+                        ? "is-active"
+                        : null
+                    }
+                    type="button"
+                    name="category"
+                    onClick={handleChange}
+                  >
+                    {category}
+                  </button>
+                );
+              })}
+            </div>
+          </article>
 
-        <div className="colors">
-          {colors.map((color, i) => {
-            return (
-              <button
-                key={i}
-                type="button"
-                name="color"
-                style={{
-                  backgroundColor: color,
-                }}
-                data-color={color}
-                onClick={handleChange}
-              >
-                {i === 0 && "all"}
-                {i !== 0 && color === filters.color ? (
-                  <FaCheck size={12} />
-                ) : null}
-              </button>
-            );
-          })}
-        </div>
+          <article className="companies">
+            <h2>제조사</h2>
 
-        <div>
-          <p>{filters.price.toLocaleString()}</p>
-          <input
-            type="range"
-            name="price"
-            value={filters.price}
-            min={filters.min_price}
-            max={filters.max_price}
-            step="100000"
-            onChange={handleChange}
-          />
-        </div>
+            <select
+              name="company"
+              value={filters.company}
+              onChange={handleChange}
+            >
+              {companies.map((company, i) => {
+                return (
+                  <option key={i} value={company}>
+                    {company}
+                  </option>
+                );
+              })}
+            </select>
+          </article>
 
-        <div>
-          <label htmlFor="shipping">무료배송</label>
-          <input
-            type="checkbox"
-            name="shipping"
-            id="shipping"
-            checked={filters.shipping}
-            onChange={handleChange}
-          />
-        </div>
-      </form>
+          <article className="colors">
+            <h2>색상</h2>
 
-      <button type="button" onClick={handleReset}>
-        초기화
-      </button>
-    </S.Filters>
+            <div className="button-container">
+              {colors.map((color, i) => {
+                return (
+                  <button
+                    key={i}
+                    className={color === filters.color ? "is-active" : null}
+                    type="button"
+                    name="color"
+                    style={{
+                      backgroundColor: color,
+                    }}
+                    data-color={color}
+                    onClick={handleChange}
+                  >
+                    {i === 0 && "all"}
+                    {i !== 0 && color === filters.color ? (
+                      <FaCheck size={12} />
+                    ) : null}
+                  </button>
+                );
+              })}
+            </div>
+          </article>
+
+          <article className="price">
+            <h2>가격</h2>
+            <p>{filters.price.toLocaleString()}</p>
+            <input
+              type="range"
+              name="price"
+              value={filters.price}
+              min={filters.min_price}
+              max={filters.max_price}
+              step="100000"
+              onChange={handleChange}
+            />
+          </article>
+
+          <div className="shipping">
+            <label htmlFor="shipping">무료배송</label>
+            <input
+              type="checkbox"
+              name="shipping"
+              id="shipping"
+              checked={filters.shipping}
+              onChange={handleChange}
+            />
+          </div>
+
+          <S.ResetButton type="button" onClick={handleReset}>
+            초기화
+          </S.ResetButton>
+        </S.MoreOptions>
+      )}
+    </div>
   );
 }
 
