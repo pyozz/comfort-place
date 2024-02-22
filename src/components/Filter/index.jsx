@@ -48,6 +48,22 @@ function Filter() {
             );
           })}
         </div>
+
+        <div>
+          <select
+            name="company"
+            value={filters.company}
+            onChange={handleChange}
+          >
+            {companies.map((company, i) => {
+              return (
+                <option key={i} value={company}>
+                  {company}
+                </option>
+              );
+            })}
+          </select>
+        </div>
       </form>
     </div>
   );

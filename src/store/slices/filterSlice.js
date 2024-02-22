@@ -36,7 +36,7 @@ export const filterSlice = createSlice({
 
     filterProducts(state) {
       const { all_products } = state;
-      const { text, category } = state.filters;
+      const { text, category, company } = state.filters;
 
       let tempProducts = [...all_products];
 
@@ -49,6 +49,12 @@ export const filterSlice = createSlice({
       if (category !== "all") {
         tempProducts = tempProducts.filter((product) => {
           return product.category === category;
+        });
+      }
+
+      if (company !== "all") {
+        tempProducts = tempProducts.filter((product) => {
+          return product.company === company;
         });
       }
 
