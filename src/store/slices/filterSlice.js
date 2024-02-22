@@ -36,7 +36,7 @@ export const filterSlice = createSlice({
 
     filterProducts(state) {
       const { all_products } = state;
-      const { text, category, company, color, price } = state.filters;
+      const { text, category, company, color, price, shipping } = state.filters;
 
       let tempProducts = [...all_products];
 
@@ -65,6 +65,12 @@ export const filterSlice = createSlice({
       }
 
       tempProducts = tempProducts.filter((product) => product.price <= price);
+
+      if (shipping) {
+        tempProducts = tempProducts.filter((product) => {
+          return product.shipping === true;
+        });
+      }
 
       state.filtered_products = tempProducts;
     },

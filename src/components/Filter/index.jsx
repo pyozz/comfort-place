@@ -21,6 +21,7 @@ function Filter() {
     if (name === "category") value = e.target.textContent;
     if (name === "color") value = e.target.dataset.color;
     if (name === "price") value = +value;
+    if (name === "shipping") value = e.target.checked;
 
     dispatch(filterActions.updateFilters({ name, value }));
   };
@@ -102,6 +103,17 @@ function Filter() {
             min={filters.min_price}
             max={filters.max_price}
             step="100000"
+            onChange={handleChange}
+          />
+        </div>
+
+        <div>
+          <label htmlFor="shipping">무료배송</label>
+          <input
+            type="checkbox"
+            name="shipping"
+            id="shipping"
+            checked={filters.shipping}
             onChange={handleChange}
           />
         </div>
