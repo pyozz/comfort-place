@@ -20,6 +20,7 @@ function Filter() {
 
     if (name === "category") value = e.target.textContent;
     if (name === "color") value = e.target.dataset.color;
+    if (name === "price") value = +value;
 
     dispatch(filterActions.updateFilters({ name, value }));
   };
@@ -90,6 +91,19 @@ function Filter() {
               </button>
             );
           })}
+        </div>
+
+        <div>
+          <p>{filters.price.toLocaleString()}</p>
+          <input
+            type="range"
+            name="price"
+            value={filters.price}
+            min={filters.min_price}
+            max={filters.max_price}
+            step="100000"
+            onChange={handleChange}
+          />
         </div>
       </form>
     </S.Filters>
