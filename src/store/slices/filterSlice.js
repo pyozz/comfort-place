@@ -74,6 +74,18 @@ export const filterSlice = createSlice({
 
       state.filtered_products = tempProducts;
     },
+
+    clearFilters(state) {
+      state.filters = {
+        ...state.filters,
+        text: "",
+        company: "all",
+        category: "all",
+        color: "all",
+        price: state.filters.max_price,
+        shipping: false,
+      };
+    },
   },
 });
 

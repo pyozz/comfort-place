@@ -26,6 +26,10 @@ function Filter() {
     dispatch(filterActions.updateFilters({ name, value }));
   };
 
+  const handleReset = () => {
+    dispatch(filterActions.clearFilters());
+  };
+
   const categories = removeDuplicates(all_products, "category");
   const companies = removeDuplicates(all_products, "company");
   const colors = removeDuplicates(all_products, "colors");
@@ -118,6 +122,10 @@ function Filter() {
           />
         </div>
       </form>
+
+      <button type="button" onClick={handleReset}>
+        초기화
+      </button>
     </S.Filters>
   );
 }
