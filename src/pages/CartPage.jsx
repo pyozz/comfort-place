@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
+import { CartContent } from "@/components/Cart";
+
 import * as S from "@/styles/pages/CartPageStyles.js";
 
 function CartPage() {
@@ -16,7 +18,11 @@ function CartPage() {
     );
   }
 
-  return <div>CartPage</div>;
+  return (
+    <main>
+      <CartContent />
+    </main>
+  );
 }
 
 export default CartPage;
