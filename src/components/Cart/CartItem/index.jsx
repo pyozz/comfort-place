@@ -1,11 +1,27 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 
 import { FaPlus, FaMinus } from "react-icons/fa";
 import { FaRegTrashAlt } from "react-icons/fa";
+import { cartActions } from "../../../store/slices/cartSlice";
 
 import * as S from "./style";
 
-function CartItem({ name, image, color, quantity, totalPrice }) {
+function CartItem({ id, name, image, color, quantity, totalPrice }) {
+  const dispatch = useDispatch();
+
+  const decrease = () => {
+    dispatch(cartActions.toggleCartItemQuantity({ id, value: "decrease" }));
+  };
+
+  const increase = () => {
+    dispatch(cartActions.toggleCartItemQuantity({ id, value: "increase" }));
+  };
+
+  const handleRemoveCartItem = () => {
+    dispatch(cartActions.removeCartItem({ id }));
+  };
+
   return (
     <S.CartItem>
       <div className="item-image">
@@ -17,21 +33,25 @@ function CartItem({ name, image, color, quantity, totalPrice }) {
         <p>
           색상 : <span style={{ backgroundColor: color }}></span>
         </p>
-        <strong>{totalPrice.toLocaleString()}</strong>
+        <strong>{totalPrice?.toLocaleString()}</strong>
       </div>
 
       <div className="item-control">
         <div className="button-container">
-          <button type="button">
+          <button type="button" onClick={decrease}>
             <FaMinus />
           </button>
           <p>{quantity}</p>
-          <button type="button">
+          <button type="button" onClick={increase}>
             <FaPlus />
           </button>
         </div>
 
-        <button className="delete-button" type="button">
+        <button
+          className="delete-button"
+          type="button"
+          onClick={handleRemoveCartItem}
+        >
           <FaRegTrashAlt />
         </button>
       </div>
