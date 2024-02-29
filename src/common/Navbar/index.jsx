@@ -15,7 +15,7 @@ function Navbar() {
           </Link>
 
           {/* TODO: 비로그인 -> 로그인 버튼, 로그인 -> 위시리스트, 장바구니 버튼 */}
-          <button type="button">로그인</button>
+          <Link to="login">로그인</Link>
         </div>
       </div>
     </S.NavContainer>

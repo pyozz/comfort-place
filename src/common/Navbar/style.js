@@ -17,7 +17,7 @@ export const NavContainer = styled.nav`
     justify-content: space-between;
     align-items: center;
 
-    a {
+    a:first-child {
       display: block;
       width: 90px;
 

@@ -5,6 +5,7 @@ import Layout from "../common/Layout";
 import HomePage from "../pages/HomePage";
 import ProductDetailPage from "../pages/ProductDetailPage";
 import CartPage from "../pages/CartPage";
+import LoginPage from "../pages/LoginPage";
 
 function Router() {
   return (
@@ -14,6 +15,8 @@ function Router() {
         <Route path="products/:productId" element={<ProductDetailPage />} />
         <Route path="cart" element={<CartPage />} />
       </Route>
+
+      <Route path="login" element={<LoginPage />} />
     </Routes>
   );
 }
