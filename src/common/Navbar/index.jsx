@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { FaHeart, FaShoppingCart } from "react-icons/fa";
+import { useSelector } from "react-redux";
 
 import logo from "@/assets/images/logo.svg";
 import { auth } from "@/config/firebase.js";
@@ -10,6 +11,11 @@ import * as S from "./style";
 
 function Navbar() {
   const [user, setUser] = useState(null);
+
+  const cart = useSelector((state) => state.cart.cart);
+  const cartSum = cart.reduce((total, obj) => total + obj.quantity, 0);
+
+  const wishlistSum = useSelector((state) => state.wishlist.wishlist).length;
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
@@ -38,10 +44,12 @@ function Navbar() {
           {user ? (
             <div className="nav-link-wrapper">
               <Link to="wishlist">
+                <span>{wishlistSum}</span>
                 <FaHeart />
               </Link>
 
               <Link to="cart">
+                <span>{cartSum}</span>
                 <FaShoppingCart />
               </Link>
 

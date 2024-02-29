@@ -35,7 +35,23 @@ export const NavContainer = styled.nav`
     gap: 14px;
 
     a {
+      position: relative;
       width: auto !important;
+
+      span {
+        position: absolute;
+        top: -4px;
+        right: -4px;
+        min-width: 12px;
+        height: 12px;
+        padding: 0 4px;
+        border-radius: 10000px;
+        color: #fff;
+        font-size: 12px;
+        text-align: center;
+
+        background-color: red;
+      }
     }
   }
 `;
