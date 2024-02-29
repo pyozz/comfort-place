@@ -4,18 +4,21 @@ import { useSelector } from "react-redux";
 import CartItem from "../CartItem";
 
 import * as S from "./style";
+import * as G from "@/styles/common.js";
 
 function CartContent() {
   const { cart } = useSelector((state) => state.cart);
 
   return (
-    <S.CartContent>
-      <ol>
-        {cart.map((cartItem) => {
-          return <CartItem key={cartItem.id} {...cartItem} />;
-        })}
-      </ol>
-    </S.CartContent>
+    <G.CenterWrapper>
+      <S.CartContent>
+        <ol>
+          {cart.map((cartItem) => {
+            return <CartItem key={cartItem.id} {...cartItem} />;
+          })}
+        </ol>
+      </S.CartContent>
+    </G.CenterWrapper>
   );
 }
 

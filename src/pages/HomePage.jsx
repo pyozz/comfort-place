@@ -10,6 +10,8 @@ import {
 import { ProductSection } from "@/common/Product";
 import Filter from "../components/Filter";
 
+import * as G from "@/styles/common.js";
+
 function HomePage() {
   const { products } = useProductsContext(ProductsContext);
   const { filtered_products } = useSelector((state) => state.filter);
@@ -29,10 +31,10 @@ function HomePage() {
   }, [filtered_products, displayedProducts]);
 
   return (
-    <>
+    <G.CenterWrapper>
       <Filter />
       <ProductSection products={displayedProducts} />
-    </>
+    </G.CenterWrapper>
   );
 }
 
