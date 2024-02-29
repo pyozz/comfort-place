@@ -4,6 +4,7 @@ import { FaHeart, FaShoppingCart } from "react-icons/fa";
 
 import logo from "@/assets/images/logo.svg";
 import { auth } from "@/config/firebase.js";
+import { signOut } from "firebase/auth";
 
 import * as S from "./style";
 
@@ -17,6 +18,14 @@ function Navbar() {
 
     return () => unsubscribe();
   }, []);
+
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <S.NavContainer>
@@ -36,7 +45,9 @@ function Navbar() {
                 <FaShoppingCart />
               </Link>
 
-              <button type="button">로그아웃</button>
+              <button type="button" onClick={handleLogout}>
+                로그아웃
+              </button>
             </div>
           ) : (
             <Link to="login">로그인</Link>
