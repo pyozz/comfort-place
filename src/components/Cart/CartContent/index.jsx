@@ -12,6 +12,8 @@ function CartContent() {
   return (
     <G.CenterWrapper>
       <S.CartContent>
+        <h2>장바구니</h2>
+
         <ol>
           {cart.map((cartItem) => {
             return <CartItem key={cartItem.id} {...cartItem} />;
