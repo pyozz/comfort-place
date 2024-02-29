@@ -56,8 +56,17 @@ export const Wrapper = styled.div`
 
 export const CartButton = styled(Link)`
   padding: 2px 8px;
+  margin-right: 6px;
   border-radius: 4px;
   font-size: 12px;
   color: #fff;
   background-color: #0081ff;
+`;
+
+export const HeartButton = styled.button`
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  color: #fff;
+  background-color: #f4538a;
 `;
