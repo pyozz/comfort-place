@@ -6,6 +6,7 @@ import HomePage from "../pages/HomePage";
 import ProductDetailPage from "../pages/ProductDetailPage";
 import CartPage from "../pages/CartPage";
 import LoginPage from "../pages/LoginPage";
+import SignupPage from "../pages/SignupPage";
 
 function Router() {
   return (
@@ -17,6 +18,7 @@ function Router() {
       </Route>
 
       <Route path="login" element={<LoginPage />} />
+      <Route path="signup" element={<SignupPage />} />
     </Routes>
   );
 }
