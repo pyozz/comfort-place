@@ -28,4 +28,14 @@ export const NavContainer = styled.nav`
       }
     }
   }
+
+  .nav-link-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    a {
+      width: auto !important;
+    }
+  }
 `;
