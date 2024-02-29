@@ -1,6 +1,7 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-export const WishlistItem = styled.div`
+export const WishlistItem = styled(Link)`
   position: relative;
   display: flex;
   align-items: center;

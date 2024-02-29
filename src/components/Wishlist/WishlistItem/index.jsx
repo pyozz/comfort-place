@@ -2,10 +2,9 @@ import React from "react";
 import { FaRegTrashAlt } from "react-icons/fa";
 import * as S from "./style";
 
-function WishlistItem({ name, images, company, price }) {
+function WishlistItem({ id, name, images, company, price }) {
   return (
-    <S.WishlistItem>
-      {/* TODO: 링크로 변경하기 */}
+    <S.WishlistItem to={`/products/${id}`}>
       <div className="item-image">
         <img src={images[0].url} alt={name} />
       </div>
